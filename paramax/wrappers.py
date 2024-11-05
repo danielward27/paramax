@@ -179,6 +179,21 @@ class WeightNormalization(AbstractUnwrappable[Array]):
         return self.scale * self.weight / weight_norms
 
 
+class BiasOrdering(AbstractUnwrappable[Array]):
+    """Applies bias ordering (http://bayesiandeeplearning.org/2017/papers/15.pdf).
+
+    Args:
+        bias: The (possibly wrapped) bias vector.
+    """
+
+    bias: Array | AbstractUnwrappable[Array]
+
+    def unwrap(self) -> Array:
+        first, log_diffs = self.bias[..., :1], self.bias[..., 1:]
+        first_and_diffs = jnp.concatenate([first, jnp.exp(log_diffs)], axis=-1)
+        return jnp.cumsum(first_and_diffs, axis=-1)
+
+
 def contains_unwrappables(pytree):
     """Check if a pytree contains unwrappables."""
 
