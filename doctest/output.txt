@@ -1,0 +1,25 @@
+Results of doctest builder run on 2025-05-06 15:54:34
+=====================================================
+
+Document: api/wrappers
+----------------------
+1 item passed all tests:
+   8 tests in default
+8 tests in 1 item.
+8 passed.
+Test passed.
+
+Document: index
+---------------
+1 item passed all tests:
+  10 tests in default
+10 tests in 1 item.
+10 passed.
+Test passed.
+
+Doctest summary
+===============
+   18 tests
+    0 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code
